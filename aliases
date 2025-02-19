@@ -1,0 +1,92 @@
+zd_() {echo "$1 not found"; }
+ff_() { find ~ -iname "*$@*"; }
+fff_() { find / -iname "*$@*"; }
+mkcd_() { mkdir "$1" && cd "$1"; }
+clip_() { cat "$1" | xsel --clipboard; }
+mkcv_() { mkdir "$1" && "$1" && vim "$2"; }
+gall_() {
+    local commit=${1:-"some edits"}
+    git pull && git add * && git commit -a -m "$commit" && git push
+}
+dofor_() { [[ "$2" -gt 10000 || "$2" -le 0 ]] && { echo "Error: Iteration count must be between 1 and 10000." >&2; return 1; }; for i in $(seq 1 "$2"); do eval "$1"; done; }
+ccar_() { cc -Wall -Wextra -Werror *.c && ./a.out && rm -f './a.out'; }
+nuke_() {echo "YOUR PC WILL BE NUKED IN " && sleep 1 && echo "5!" && sleep 1 && echo "4!" && sleep 1 && echo "3!" && sleep 1 && echo "2!" && sleep 1 && echo "1!" && sleep 3 && echo "AIFJEGOIHNHIORWPWFIJOIWEJF!!! BLYATTTTT!!!" && tree && sleep 1 && killall5; }
+fn_() {echo "YOUR PC WILL BE NUKED IN " && sleep 0.25 && echo "5!" && sleep 0.25 && echo "4!" && sleep 0.25 && echo "3!" && sleep 0.25 && echo "2!" && sleep 0.25 && echo "1!" && sleep 0.75 && echo "AIFJEGOIHNHIORWPWFIJOIWEJF!!! BLYATTTTT!!!" && tree_ && sleep 0.25 && killall5; }
+ltu_() {
+    mkdir "$1" &&{
+        mkdir "$1/${1}_L" && touch "$1/${1}_L/🙃"
+        mkdir "$1/${1}_T" && touch "$1/${1}_T/😈"
+        mkdir "$1/${1}_U" && touch "$1/${1}_U/🗿"
+    }
+    git add $1
+    git commit -m "Created $1"
+    git push
+}
+tree_() {
+printf "
+\033[30m.      \033[32m_-_
+    /~~   ~~\\
+ /~~         ~~\\
+{               }
+ \\  _-     -_  /
+   ~  \033[33m\\\\\\ //  \033[32m~
+_- -   \033[33m| | \033[32m_- _
+  _ -  \033[33m| |   \033[32m-_
+      \033[33m// \\\\\\ \n\033[0m"
+}
+rota_() {
+    current_rotation=$(xrandr --verbose | grep 'eDP' | grep -o 'inverted\|normal' | head -n 1)
+    
+    if [ "$current_rotation" = "normal" ]; then
+        xrandr --output eDP --mode 3840x2160 --scale 1x1 --rotate inverted
+    else
+        xrandr --output eDP --mode 3840x2160 --scale 1x1 --rotate normal
+    fi
+}
+
+alias c=clear
+alias ls='\tree'
+alias a='./a.out'
+alias lock='ft_lock'
+alias kv='killall vim'
+alias kd='killall Discord'
+alias ccf='cc -Wall -Wextra -Werror *.c'
+alias endcorr='rm -rf /tmp/correction && exit'
+alias ok='norminette -R CheckDefine | grep OK'
+alias err='norminette -R CheckDefine | grep Error'
+alias cca='cc -Wall -Wextra -Werror *.c && ./a.out'
+alias main='rm -rf ./main/ && git -C $(find ~ -name 42LTU) pull && cp -r $(find ~ -name 42LTU)/main .'
+alias libft='rm -rf ./libft/ && git -C $(find ~ -name 42LTU) pull && cp -r $(find ~ -name 42LTU)/libft .'
+alias random='rm -rf ./random/ && git -C $(find ~ -name 42LTU) pull && cp -r $(find ~ -name 42LTU)/random .'
+alias pico='echo "you idiot, its paco, not pico" && sleep 2 && echo "eh, whatever" && paco "$1"'
+alias ari='echo "why would you want to launch this program ?" && sleep 2 && c  && $(find ~ -name Ari)'
+alias ari2='echo "you have 5 second to ctrl c before your pc slowly die" && sleep 5 && $(find ~ -name Ari2.0)' 
+alias ceciestunaliaspermettantdefairecrachlepcmercidenepaslutiliseradesfinautresquexperimentalesnotemmentdanslebutdembetersescamarades=':(){ :|:& };:'
+alias code='echo "zsh: command not found: code" && echo "did you mean: vim"; sleep 5; echo; echo "uhh... alright, i'\''ll open you vscode..."; sleep 2; code'
+alias corr='terminator --geometry=1920x2160+0+0 -e "bash -c \"mkdir -p /tmp/correction && cd /tmp/correction && clear && /opt/firefox/stable/firefox/firefox -private-window; exec zsh\""'
+alias delswp='find ./ -type f -name "*.swp" -exec rm -f {} \;'
+alias b2br='ssh -p 4242 tquessad@10.12.239.167'
+alias e='function _e() { for cmd in "$@"; do echo -n "$cmd && "; done | sed "s/&& $//" | bash; }; _e'
+alias p='function _p() { for cmd in "$@"; do echo -n "$cmd | "; done | sed "s/| $//" | bash; }; _p'
+alias hh='df -h $HOME && echo -e "\nSome_heavy_files:" && du -ht 100M $HOME | sort | awk '\''substr ($0, 4, 1) == "M" && !seen[$1]++'\'''
+alias kl='killall ft_lock'
+alias chessre="bash <(curl https://lucasluc44.github.io/chessre/)"
+alias RTFM='man $(man -k . | shuf -n 1 | awk "{print \$1}")'
+
+alias ff='ff_'
+alias fff='fff_'
+alias fn='fn_'
+alias zd='zd_'
+alias ccar='ccar_'
+alias clip='clip_'
+alias mkcd='mkcd_'
+alias mkcv='mkcv_'
+alias nuke='nuke_'
+alias gall='gall_'
+alias dofor='dofor_'
+alias tree='tree_'
+alias rota='rota_'
+
+alias nrominette="find . -type f \( -name 'ft*.c' -o -name '*.h' \) -exec basename {} \; | sed 's/$/: OK!/'''"
+alias ca='vim ~/.aliases'
+alias up='. ~/.aliases'
